@@ -1,5 +1,4 @@
 import json
-import os
 import subprocess
 import getpass
 
@@ -25,6 +24,13 @@ def get_input(prompt):
     return user_input
 
 
+def write_json(filename, data):
+    """ Writes data to a file. """
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4)
+    print(f"✅ Saved in {filename}!")
+
+
 def setup_email_credentials():
     """ Requests email login data and saves it in email_credentials.json. """
     print("\n\n🔑 Put in your E-Mail Login Information:\n--------------------------------------")
@@ -32,8 +38,7 @@ def setup_email_credentials():
     password = getpass.getpass("Password (will be stored unencrypted locally on your device!)\n  > ")
 
     data = {"email": email, "password": password}
-    with open(CREDENTIALS_FILE, "w") as f:
-        json.dump(data, f, indent=4)
+    write_json(CREDENTIALS_FILE, data)
 
     print(f"✅ Saved in {CREDENTIALS_FILE}!")
 
@@ -51,8 +56,7 @@ def setup_recipients():
         recipients[str(count)] = email
         count += 1
 
-    with open(RECIPIENTS_FILE, "w") as f:
-        json.dump(recipients, f, indent=4)
+    write_json(RECIPIENTS_FILE, recipients)
 
     print(f"✅ Saved in {RECIPIENTS_FILE}!")
 
@@ -72,9 +76,7 @@ def setup_server_settings():
         "smtpport": smtp_port,
     }
 
-    with open(SERVER_SETTINGS_FILE, "w") as f:
-        json.dump(data, f, indent=4)
-
+    write_json(SERVER_SETTINGS_FILE, data)
     print(f"✅ Saved in {SERVER_SETTINGS_FILE}!")
 
 
