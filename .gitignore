@@ -169,3 +169,12 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Credentials file
+email_credentials.json
+
+# Email Server Settings
+server_settings.json
+
+# Recipients emails
+recipients.json
