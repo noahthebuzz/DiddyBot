@@ -37,7 +37,7 @@ def setup_email_credentials():
     email = get_input("E-Mail Address\n  > ")
     password = getpass.getpass("Password (will be stored unencrypted locally on your device!)\n  > ")
 
-    data = {"email": email, "password": password}
+    data = {"EMAIL": email, "PASSWORD": password}
     write_json(CREDENTIALS_FILE, data)
 
     print(f"✅ Saved in {CREDENTIALS_FILE}!")
@@ -70,10 +70,10 @@ def setup_server_settings():
     smtp_port = int(get_input("SMTP-Port\n  > "))
 
     data = {
-        "imapserver": imap_server,
-        "imapport": imap_port,
-        "smtpserver": smtp_server,
-        "smtpport": smtp_port,
+        "IMAP_SERVER": imap_server,
+        "IMAP_PORT": imap_port,
+        "SMTP_SERVER": smtp_server,
+        "SMTP_PORT": smtp_port,
     }
 
     write_json(SERVER_SETTINGS_FILE, data)
